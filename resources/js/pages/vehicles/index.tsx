@@ -61,7 +61,7 @@ export default function VehiclesIndex({ vehicles }: Props) {
                     </div>
                     <Button asChild>
                         <Link href="/vehicles/create">
-                            <Plus className="mr-2 h-4 w-4" />
+                            <Plus className="h-4 w-4" />
                             Tambah Kendaraan
                         </Link>
                     </Button>

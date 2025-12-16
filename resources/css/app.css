@@ -61,75 +61,124 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ===========================================
+   NikelKu Design System
+   Primary: #123c61 (Deep Navy Blue)
+   Accent: #f59e0b (Amber)
+   =========================================== */
+
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
+    /* Background & Foreground */
+    --background: oklch(0.985 0.002 247);
+    --foreground: oklch(0.25 0.03 245);
+
+    /* Card */
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
+    --card-foreground: oklch(0.25 0.03 245);
+
+    /* Popover */
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.25 0.03 245);
+
+    /* Primary - Deep Navy Blue #123c61 */
+    --primary: oklch(0.32 0.06 245);
+    --primary-foreground: oklch(0.98 0.005 245);
+
+    /* Secondary - Light Blue Tint */
+    --secondary: oklch(0.95 0.015 245);
+    --secondary-foreground: oklch(0.32 0.06 245);
+
+    /* Muted */
+    --muted: oklch(0.96 0.008 245);
+    --muted-foreground: oklch(0.5 0.02 245);
+
+    /* Accent - Amber #f59e0b */
+    --accent: oklch(0.82 0.165 75);
+    --accent-foreground: oklch(0.25 0.05 75);
+
+    /* Destructive */
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.87 0 0);
+
+    /* Borders & Inputs */
+    --border: oklch(0.88 0.015 245);
+    --input: oklch(0.88 0.015 245);
+    --ring: oklch(0.42 0.08 245);
+
+    /* Charts - Navy & Amber palette */
+    --chart-1: oklch(0.32 0.06 245);
+    --chart-2: oklch(0.82 0.165 75);
+    --chart-3: oklch(0.65 0.18 145);
+    --chart-4: oklch(0.55 0.12 25);
+    --chart-5: oklch(0.75 0.14 280);
+
+    --radius: 0;
+
+    /* Sidebar - Dark Navy Industrial */
+    --sidebar: oklch(0.25 0.04 245);
+    --sidebar-foreground: oklch(0.92 0.01 245);
+    --sidebar-primary: oklch(0.82 0.165 75);
+    --sidebar-primary-foreground: oklch(0.18 0.03 245);
+    --sidebar-accent: oklch(0.30 0.04 245);
+    --sidebar-accent-foreground: oklch(0.95 0.005 245);
+    --sidebar-border: oklch(0.35 0.03 245);
+    --sidebar-ring: oklch(0.55 0.06 245);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+    /* Background & Foreground - Dark Navy */
+    --background: oklch(0.18 0.03 245);
+    --foreground: oklch(0.95 0.005 245);
+
+    /* Card */
+    --card: oklch(0.22 0.025 245);
+    --card-foreground: oklch(0.95 0.005 245);
+
+    /* Popover */
+    --popover: oklch(0.22 0.025 245);
+    --popover-foreground: oklch(0.95 0.005 245);
+
+    /* Primary - Lighter for dark mode */
+    --primary: oklch(0.75 0.08 245);
+    --primary-foreground: oklch(0.18 0.03 245);
+
+    /* Secondary */
+    --secondary: oklch(0.28 0.03 245);
+    --secondary-foreground: oklch(0.95 0.005 245);
+
+    /* Muted */
+    --muted: oklch(0.28 0.02 245);
+    --muted-foreground: oklch(0.65 0.02 245);
+
+    /* Accent - Amber (stays vibrant) */
+    --accent: oklch(0.82 0.165 75);
+    --accent-foreground: oklch(0.18 0.03 245);
+
+    /* Destructive */
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.269 0 0);
-    --sidebar-ring: oklch(0.439 0 0);
+
+    /* Borders & Inputs */
+    --border: oklch(0.32 0.02 245);
+    --input: oklch(0.32 0.02 245);
+    --ring: oklch(0.55 0.06 245);
+
+    /* Charts */
+    --chart-1: oklch(0.65 0.12 245);
+    --chart-2: oklch(0.82 0.165 75);
+    --chart-3: oklch(0.70 0.16 145);
+    --chart-4: oklch(0.60 0.18 280);
+    --chart-5: oklch(0.65 0.20 25);
+
+    /* Sidebar - Dark Navy */
+    --sidebar: oklch(0.22 0.025 245);
+    --sidebar-foreground: oklch(0.95 0.005 245);
+    --sidebar-primary: oklch(0.75 0.08 245);
+    --sidebar-primary-foreground: oklch(0.18 0.03 245);
+    --sidebar-accent: oklch(0.28 0.03 245);
+    --sidebar-accent-foreground: oklch(0.95 0.005 245);
+    --sidebar-border: oklch(0.32 0.02 245);
+    --sidebar-ring: oklch(0.55 0.06 245);
 }
 
 @layer base {
@@ -139,5 +188,43 @@
 
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+/* ===========================================
+   Industrial Design System - Custom Styles
+   =========================================== */
+
+@layer components {
+
+    /* Industrial sidebar active state with amber left border */
+    [data-sidebar="menu-button"][data-active="true"] {
+        border-left: 3px solid oklch(0.82 0.165 75) !important;
+        border-radius: 0 !important;
+        background: oklch(0.30 0.04 245) !important;
+    }
+
+    /* Table zebra striping */
+    .table-industrial tbody tr:nth-child(even) {
+        background-color: oklch(0.97 0.005 245);
+    }
+
+    .dark .table-industrial tbody tr:nth-child(even) {
+        background-color: oklch(0.22 0.02 245);
+    }
+
+    /* Industrial card with left accent */
+    .card-industrial {
+        border-left: 4px solid oklch(0.32 0.06 245);
+    }
+
+    .card-industrial-amber {
+        border-left: 4px solid oklch(0.82 0.165 75);
+    }
+
+    /* Monospace for technical data */
+    .font-technical {
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        letter-spacing: 0.02em;
     }
 }

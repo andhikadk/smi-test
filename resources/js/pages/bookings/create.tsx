@@ -88,7 +88,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                     {/* Main Form */}
                     <div className="space-y-6 lg:col-span-2">
                         {/* Employee Selection */}
-                        <Card>
+                        <Card className="card-industrial">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <User className="h-5 w-5" />
@@ -127,7 +127,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Vehicle & Driver Selection */}
-                        <Card>
+                        <Card className="card-industrial">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <Car className="h-5 w-5" />
@@ -191,7 +191,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Time Selection */}
-                        <Card>
+                        <Card className="card-industrial">
                             <CardHeader>
                                 <CardTitle>Waktu Pemesanan</CardTitle>
                                 <CardDescription>
@@ -231,7 +231,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Purpose */}
-                        <Card>
+                        <Card className="card-industrial">
                             <CardHeader>
                                 <CardTitle>Tujuan Pemesanan</CardTitle>
                                 <CardDescription>
@@ -243,7 +243,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                                     <Label htmlFor="purpose">Tujuan *</Label>
                                     <textarea
                                         id="purpose"
-                                        className="flex min-h-24 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex min-h-24 w-full rounded-none border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         placeholder="Contoh: Antar jemput tamu dari bandara untuk meeting dengan client"
                                         value={data.purpose}
                                         onChange={(e) =>
@@ -259,7 +259,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Approver Selection */}
-                        <Card>
+                        <Card className="card-industrial">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <UserCheck className="h-5 w-5" />

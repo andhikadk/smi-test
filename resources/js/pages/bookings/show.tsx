@@ -126,14 +126,14 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                                 disabled={approveForm.processing}
                                 className="bg-green-600 hover:bg-green-700"
                             >
-                                <CheckCircle className="mr-2 h-4 w-4" />
+                                <CheckCircle className="h-4 w-4" />
                                 Setujui
                             </Button>
                             <Button
                                 onClick={() => setIsRejectDialogOpen(true)}
                                 variant="destructive"
                             >
-                                <XCircle className="mr-2 h-4 w-4" />
+                                <XCircle className="h-4 w-4" />
                                 Tolak
                             </Button>
                         </div>
@@ -143,7 +143,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                 {/* Detail Cards */}
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {/* Vehicle Card */}
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-2 text-base">
                                 <Car className="h-4 w-4 text-muted-foreground" />
@@ -151,7 +151,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">
+                            <div className="text-2xl font-bold font-technical">
                                 {booking.vehicle.plate_number}
                             </div>
                             <p className="text-sm text-muted-foreground">
@@ -164,7 +164,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                     </Card>
 
                     {/* Driver Card */}
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-2 text-base">
                                 <User className="h-4 w-4 text-muted-foreground" />
@@ -188,7 +188,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                     </Card>
 
                     {/* Time Card */}
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-2 text-base">
                                 <Clock className="h-4 w-4 text-muted-foreground" />
@@ -214,7 +214,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                     </Card>
 
                     {/* Requester Card */}
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-2 text-base">
                                 <User className="h-4 w-4 text-muted-foreground" />
@@ -271,7 +271,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                                         >
                                             <div
                                                 className={cn(
-                                                    'mt-0.5 h-3 w-3 rounded-full',
+                                                    'mt-0.5 h-3 w-3 rounded-none',
                                                     approval.status.value === 'approved'
                                                         ? 'bg-green-500'
                                                         : 'bg-red-500'
@@ -298,7 +298,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                                                     {approval.approver.name}
                                                 </p>
                                                 {approval.notes && (
-                                                    <p className="rounded-md bg-muted p-2 text-sm">
+                                                    <p className="rounded-none bg-muted p-2 text-sm">
                                                         {approval.notes}
                                                     </p>
                                                 )}
@@ -330,7 +330,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                             <Label htmlFor="notes">Catatan Penolakan</Label>
                             <textarea
                                 id="notes"
-                                className="mt-2 flex min-h-24 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="mt-2 flex min-h-24 w-full rounded-none border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 placeholder="Alasan penolakan..."
                                 value={rejectForm.data.notes}
                                 onChange={(e) =>

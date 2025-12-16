@@ -39,7 +39,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const COLORS = ['#f59e0b', '#22c55e', '#ef4444', '#3b82f6'];
+// Industrial monochrome palette: Navy shades + Amber accent
+const COLORS = ['#f59e0b', '#123c61', '#4b5563', '#64748b'];
+const NAVY = '#123c61';
+const STEEL = '#4b5563';
 
 export default function Dashboard({
     stats,
@@ -54,7 +57,7 @@ export default function Dashboard({
             <div className="flex h-full flex-1 flex-col gap-6 p-4 md:p-6">
                 {/* Stats Cards */}
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Total Pemesanan
@@ -62,41 +65,41 @@ export default function Dashboard({
                             <CalendarCheck className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">
+                            <div className="text-2xl font-bold font-technical">
                                 {stats.total_bookings}
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="card-industrial-amber">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Menunggu Persetujuan
                             </CardTitle>
-                            <Clock className="h-4 w-4 text-yellow-500" />
+                            <Clock className="h-4 w-4 text-amber-500" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-yellow-600">
+                            <div className="text-2xl font-bold font-technical text-amber-600">
                                 {stats.pending_bookings}
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Disetujui
                             </CardTitle>
-                            <CalendarCheck className="h-4 w-4 text-green-500" />
+                            <CalendarCheck className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-green-600">
+                            <div className="text-2xl font-bold font-technical">
                                 {stats.approved_bookings}
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Total Kendaraan
@@ -104,21 +107,21 @@ export default function Dashboard({
                             <Truck className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">
+                            <div className="text-2xl font-bold font-technical">
                                 {stats.total_vehicles}
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="card-industrial">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Total Supir
+                                Total Sopir
                             </CardTitle>
                             <Users className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">
+                            <div className="text-2xl font-bold font-technical">
                                 {stats.total_drivers}
                             </div>
                         </CardContent>
@@ -140,16 +143,17 @@ export default function Dashboard({
                                 {bookingTrend.length > 0 ? (
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart data={bookingTrend}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="month" />
-                                            <YAxis allowDecimals={false} />
+                                            <CartesianGrid strokeDasharray="3 3" stroke={STEEL} opacity={0.3} />
+                                            <XAxis dataKey="month" stroke={STEEL} />
+                                            <YAxis allowDecimals={false} stroke={STEEL} />
                                             <Tooltip />
                                             <Line
                                                 type="monotone"
                                                 dataKey="count"
-                                                stroke="#3b82f6"
+                                                stroke={NAVY}
                                                 strokeWidth={2}
                                                 name="Pemesanan"
+                                                dot={{ fill: NAVY }}
                                             />
                                         </LineChart>
                                     </ResponsiveContainer>
@@ -184,7 +188,7 @@ export default function Dashboard({
                                                     `${name ?? ''} (${((percent ?? 0) * 100).toFixed(0)}%)`
                                                 }
                                                 outerRadius={100}
-                                                fill="#8884d8"
+                                                fill={NAVY}
                                                 dataKey="count"
                                                 nameKey="status"
                                             >
@@ -225,20 +229,21 @@ export default function Dashboard({
                             {vehicleUsage.length > 0 ? (
                                 <ResponsiveContainer width="100%" height="100%">
                                     <BarChart data={vehicleUsage} layout="vertical">
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis type="number" allowDecimals={false} />
+                                        <CartesianGrid strokeDasharray="3 3" stroke={STEEL} opacity={0.3} />
+                                        <XAxis type="number" allowDecimals={false} stroke={STEEL} />
                                         <YAxis
                                             dataKey="name"
                                             type="category"
                                             width={100}
                                             tick={{ fontSize: 12 }}
+                                            stroke={STEEL}
                                         />
                                         <Tooltip />
                                         <Bar
                                             dataKey="count"
-                                            fill="#3b82f6"
+                                            fill={NAVY}
                                             name="Pemesanan"
-                                            radius={[0, 4, 4, 0]}
+                                            radius={[0, 0, 0, 0]}
                                         />
                                     </BarChart>
                                 </ResponsiveContainer>

@@ -115,7 +115,7 @@ export default function ReportsIndex({ bookings, statuses, filters }: Props) {
                         </p>
                     </div>
                     <Button onClick={handleExport} disabled={bookings.length === 0}>
-                        <Download className="mr-2 h-4 w-4" />
+                        <Download className="h-4 w-4" />
                         Export Excel
                     </Button>
                 </div>

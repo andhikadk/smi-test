@@ -94,7 +94,7 @@ export default function BookingsIndex({ bookings, filters, canCreate }: Props) {
                     {canCreate && (
                         <Button asChild>
                             <Link href="/bookings/create">
-                                <Plus className="mr-2 h-4 w-4" />
+                                <Plus className="h-4 w-4" />
                                 Buat Pemesanan
                             </Link>
                         </Button>
