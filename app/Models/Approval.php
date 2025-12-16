@@ -19,4 +19,14 @@ class Approval extends Model
             'status' => ApprovalStatus::class,
         ];
     }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
+    }
+
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approver_id');
+    }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->string('activity');
+            $table->text('activity');
             $table->timestamps();
         });
     }

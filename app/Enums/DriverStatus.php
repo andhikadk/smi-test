@@ -14,7 +14,7 @@ enum DriverStatus: string
 
     public function getLabel(): string
     {
-        return match($this) {
+        return match ($this) {
             self::AVAILABLE => 'Tersedia',
             self::UNAVAILABLE => 'Tidak Tersedia',
         };

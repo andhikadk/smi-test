@@ -14,7 +14,7 @@ enum VehicleOwnership: string
 
     public function getLabel(): string
     {
-        return match($this) {
+        return match ($this) {
             self::OWNED => 'Milik Perusahaan',
             self::RENTED => 'Disewa',
         };

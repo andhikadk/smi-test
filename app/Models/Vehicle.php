@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Enums\VehicleType;
-use App\Enums\VehicleStatus;
 use App\Enums\VehicleOwnership;
-use Illuminate\Database\Eloquent\Model;
+use App\Enums\VehicleStatus;
+use App\Enums\VehicleType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {

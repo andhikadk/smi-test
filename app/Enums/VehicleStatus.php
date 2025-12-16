@@ -15,7 +15,7 @@ enum VehicleStatus: string
 
     public function getLabel(): string
     {
-        return match($this) {
+        return match ($this) {
             self::AVAILABLE => 'Tersedia',
             self::IN_USE => 'Sedang Dipakai',
             self::IN_SERVICE => 'Dalam Service',

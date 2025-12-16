@@ -14,7 +14,7 @@ enum VehicleType: string
 
     public function getLabel(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PERSONNEL => 'Angkutan Orang',
             self::CARGO => 'Angkutan Barang',
         };
