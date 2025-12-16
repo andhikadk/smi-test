@@ -8,21 +8,19 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     /**
      * All of the container bindings that should be registered.
-     *
-     * @var array
      */
     public array $bindings = [
-        \App\Repositories\Contracts\BookingRepositoryInterface::class =>
-            \App\Repositories\Eloquent\EloquentBookingRepository::class,
+        \App\Repositories\Contracts\BookingRepositoryInterface::class => \App\Repositories\Eloquent\EloquentBookingRepository::class,
 
-        \App\Repositories\Contracts\ActivityLogRepositoryInterface::class =>
-            \App\Repositories\Eloquent\EloquentActivityLogRepository::class,
+        \App\Repositories\Contracts\ActivityLogRepositoryInterface::class => \App\Repositories\Eloquent\EloquentActivityLogRepository::class,
 
-        \App\Repositories\Contracts\ApprovalRepositoryInterface::class =>
-            \App\Repositories\Eloquent\EloquentApprovalRepository::class,
+        \App\Repositories\Contracts\ApprovalRepositoryInterface::class => \App\Repositories\Eloquent\EloquentApprovalRepository::class,
 
-        \App\Repositories\Contracts\UserRepositoryInterface::class =>
-            \App\Repositories\Eloquent\EloquentUserRepository::class,
+        \App\Repositories\Contracts\UserRepositoryInterface::class => \App\Repositories\Eloquent\EloquentUserRepository::class,
+
+        \App\Repositories\Contracts\VehicleRepositoryInterface::class => \App\Repositories\Eloquent\EloquentVehicleRepository::class,
+
+        \App\Repositories\Contracts\DriverRepositoryInterface::class => \App\Repositories\Eloquent\EloquentDriverRepository::class,
     ];
 
     /**

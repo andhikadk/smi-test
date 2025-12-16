@@ -51,4 +51,29 @@ class User extends Authenticatable
             'role' => UserRole::class,
         ];
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function approvals()
+    {
+        return $this->hasMany(Approval::class, 'approver_id');
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::ADMIN;
+    }
+
+    public function isApprover(): bool
+    {
+        return $this->role === UserRole::APPROVER;
+    }
+
+    public function isEmployee(): bool
+    {
+        return $this->role === UserRole::EMPLOYEE;
+    }
 }
