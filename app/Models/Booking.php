@@ -43,4 +43,14 @@ class Booking extends Model
     {
         return $this->hasMany(Approval::class);
     }
+
+    public function approver1(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approver_1_id');
+    }
+
+    public function approver2(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approver_2_id');
+    }
 }

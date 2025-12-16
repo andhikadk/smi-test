@@ -32,6 +32,8 @@ class BookingService
                 'user_id' => $data['user_id'],
                 'vehicle_id' => $data['vehicle_id'],
                 'driver_id' => $data['driver_id'],
+                'approver_1_id' => $data['approver_1_id'],
+                'approver_2_id' => $data['approver_2_id'],
                 'purpose' => $data['purpose'],
                 'start_datetime' => $data['start_datetime'],
                 'end_datetime' => $data['end_datetime'],
@@ -40,7 +42,7 @@ class BookingService
             ]);
 
             $this->activityLogService->log(
-                "User {$booking->user->name} membuat pemesanan untuk kendaraan {$booking->vehicle->plate_number}.",
+                "Admin membuat pemesanan untuk karyawan {$booking->user->name}, kendaraan {$booking->vehicle->plate_number}.",
                 $booking->user
             );
 
@@ -68,7 +70,12 @@ class BookingService
                 throw new BookingNotPendingException($booking->status->getLabel());
             }
 
-            if ($approver->approval_level !== $booking->current_approval_level) {
+            // Check if approver matches the designated approver for current level
+            $expectedApproverId = $booking->current_approval_level === 1
+                ? $booking->approver_1_id
+                : $booking->approver_2_id;
+
+            if ($approver->id !== $expectedApproverId) {
                 throw new UnauthorizedApprovalException;
             }
 
@@ -79,24 +86,25 @@ class BookingService
                 'status' => ApprovalStatus::APPROVED,
             ]);
 
-            $nextApprover = $this->findApproverForLevel($booking->current_approval_level + 1);
-
-            if ($nextApprover) {
+            // Check if there's a next level (we have 2 levels max)
+            if ($booking->current_approval_level === 1) {
                 $this->bookingRepository->update($booking->id, [
-                    'current_approval_level' => $booking->current_approval_level + 1,
+                    'current_approval_level' => 2,
                 ]);
 
+                $nextApprover = $booking->approver2;
                 $this->activityLogService->log(
-                    "Pemesanan {$booking->id} disetujui oleh {$approver->name} (Level {$booking->current_approval_level}). Menunggu persetujuan dari {$nextApprover->name}.",
+                    "Pemesanan {$booking->id} disetujui oleh {$approver->name} (Level 1). Menunggu persetujuan dari {$nextApprover->name}.",
                     $approver
                 );
             } else {
+                // Level 2 approved = fully approved
                 $this->bookingRepository->update($booking->id, [
                     'status' => BookingStatus::APPROVED,
                 ]);
 
                 $this->activityLogService->log(
-                    "Pemesanan {$booking->id} telah disetujui sepenuhnya oleh {$approver->name} (Level {$booking->current_approval_level}).",
+                    "Pemesanan {$booking->id} telah disetujui sepenuhnya oleh {$approver->name} (Level 2).",
                     $approver
                 );
             }
@@ -128,7 +136,12 @@ class BookingService
                 throw new BookingNotPendingException($booking->status->getLabel());
             }
 
-            if ($approver->approval_level !== $booking->current_approval_level) {
+            // Check if approver matches the designated approver for current level
+            $expectedApproverId = $booking->current_approval_level === 1
+                ? $booking->approver_1_id
+                : $booking->approver_2_id;
+
+            if ($approver->id !== $expectedApproverId) {
                 throw new UnauthorizedApprovalException;
             }
 
@@ -162,8 +175,4 @@ class BookingService
         }
     }
 
-    private function findApproverForLevel(int $level)
-    {
-        return $this->userRepository->findApproverByLevel($level);
-    }
 }

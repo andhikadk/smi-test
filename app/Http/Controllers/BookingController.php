@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Http\Requests\ApprovalActionRequest;
 use App\Http\Requests\CreateBookingRequest;
+use App\Models\Booking;
 use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Repositories\Contracts\DriverRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -79,6 +81,11 @@ class BookingController extends Controller
     public function create(): Response
     {
         return Inertia::render('bookings/create', [
+            'employees' => $this->userRepository->findByRole(UserRole::EMPLOYEE)->map(fn ($u) => [
+                'id' => $u->id,
+                'name' => $u->name,
+                'email' => $u->email,
+            ]),
             'vehicles' => $this->vehicleRepository->getAvailable()->map(fn ($v) => [
                 'id' => $v->id,
                 'plate_number' => $v->plate_number,
@@ -91,9 +98,11 @@ class BookingController extends Controller
                 'name' => $d->name,
                 'license_number' => $d->license_number,
             ]),
-            'approvers' => $this->userRepository->findApproverByLevel(1)
-                ? ['level_1' => $this->userRepository->findApproverByLevel(1)->name]
-                : [],
+            'approvers' => $this->userRepository->findByRole(UserRole::APPROVER)->map(fn ($u) => [
+                'id' => $u->id,
+                'name' => $u->name,
+                'email' => $u->email,
+            ]),
         ]);
     }
 
@@ -101,9 +110,11 @@ class BookingController extends Controller
     {
         try {
             $booking = $this->bookingService->createBooking([
-                'user_id' => $request->user()->id,
+                'user_id' => $request->validated('employee_id'),
                 'vehicle_id' => $request->validated('vehicle_id'),
                 'driver_id' => $request->validated('driver_id'),
+                'approver_1_id' => $request->validated('approver_1_id'),
+                'approver_2_id' => $request->validated('approver_2_id'),
                 'purpose' => $request->validated('purpose'),
                 'start_datetime' => $request->validated('start_datetime'),
                 'end_datetime' => $request->validated('end_datetime'),
@@ -119,13 +130,16 @@ class BookingController extends Controller
         }
     }
 
-    public function show(int $id): Response
+    public function show(Booking $booking): Response
     {
-        $booking = $this->bookingRepository->findById($id);
+        // Load relationships needed for the view
+        $booking->load(['user', 'vehicle', 'driver', 'approvals.approver', 'approver1', 'approver2']);
 
-        if (! $booking) {
-            abort(404, 'Pemesanan tidak ditemukan.');
-        }
+        $user = request()->user();
+        $expectedApproverId = $booking->current_approval_level === 1
+            ? $booking->approver_1_id
+            : $booking->approver_2_id;
+        $canApprove = $booking->status->value === 'pending' && $user->id === $expectedApproverId;
 
         return Inertia::render('bookings/show', [
             'booking' => [
@@ -172,14 +186,23 @@ class BookingController extends Controller
                     'notes' => $approval->notes,
                     'created_at' => $approval->created_at->toISOString(),
                 ]),
+                'approver_1' => [
+                    'id' => $booking->approver1->id,
+                    'name' => $booking->approver1->name,
+                ],
+                'approver_2' => [
+                    'id' => $booking->approver2->id,
+                    'name' => $booking->approver2->name,
+                ],
             ],
+            'canApprove' => $canApprove,
         ]);
     }
 
-    public function approve(int $id, ApprovalActionRequest $request): RedirectResponse
+    public function approve(Booking $booking, ApprovalActionRequest $request): RedirectResponse
     {
         try {
-            $this->bookingService->approveBooking($id, $request->user());
+            $this->bookingService->approveBooking($booking->id, $request->user());
 
             return back()->with('success', 'Pemesanan berhasil disetujui.');
         } catch (\App\Exceptions\BookingNotFoundException $e) {
@@ -193,11 +216,11 @@ class BookingController extends Controller
         }
     }
 
-    public function reject(int $id, ApprovalActionRequest $request): RedirectResponse
+    public function reject(Booking $booking, ApprovalActionRequest $request): RedirectResponse
     {
         try {
             $this->bookingService->rejectBooking(
-                $id,
+                $booking->id,
                 $request->user(),
                 $request->validated('notes')
             );

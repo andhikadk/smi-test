@@ -11,4 +11,13 @@ enum ApprovalStatus: string
     {
         return array_column(self::cases(), 'value');
     }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::APPROVED => 'Disetujui',
+            self::REJECTED => 'Ditolak',
+        };
+    }
 }
+
