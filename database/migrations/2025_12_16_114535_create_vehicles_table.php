@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('model');
             $table->enum('ownership', ['owned', 'rented']);
-            $table->enum('status', ['available', 'in_use', 'in_service'])->default('available');
+            $table->enum('status', ['available', 'in_service'])->default('available');
             $table->timestamps();
         });
     }

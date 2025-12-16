@@ -12,7 +12,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { CalendarCheck, LayoutGrid } from 'lucide-react';
+import { CalendarCheck, Car, LayoutGrid, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -25,6 +25,16 @@ const mainNavItems: NavItem[] = [
         title: 'Pemesanan',
         href: '/bookings',
         icon: CalendarCheck,
+    },
+    {
+        title: 'Kendaraan',
+        href: '/vehicles',
+        icon: Car,
+    },
+    {
+        title: 'Sopir',
+        href: '/drivers',
+        icon: Users,
     },
 ];
 

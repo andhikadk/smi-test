@@ -18,35 +18,17 @@ import {
 } from '@/components/ui/select';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
-import { type BreadcrumbItem } from '@/types';
+import { type BookingFilters, type BookingListItem, type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/react';
 import { Calendar, Car, Clock, Plus, User } from 'lucide-react';
 import { useState } from 'react';
 
-interface BookingListItem {
-    id: number;
-    user: { id: number; name: string };
-    vehicle: { id: number; plate_number: string; brand: string; model: string };
-    driver: { id: number; name: string };
-    purpose: string;
-    start_datetime: string;
-    end_datetime: string;
-    status: { value: string; label: string };
-    current_approval_level: number;
-    created_at: string;
-}
-
-interface Filters {
-    status: string | null;
-    date_from: string | null;
-    date_to: string | null;
-}
-
 interface Props {
     bookings: BookingListItem[];
-    filters: Filters;
+    filters: BookingFilters;
     canCreate: boolean;
 }
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

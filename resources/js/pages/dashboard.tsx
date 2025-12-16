@@ -6,7 +6,7 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem, type ChartDataPoint, type DashboardStats } from '@/types';
 import { Head } from '@inertiajs/react';
 import { CalendarCheck, Car, Clock, Truck, Users } from 'lucide-react';
 import {
@@ -26,16 +26,10 @@ import {
 } from 'recharts';
 
 interface Props {
-    stats: {
-        total_bookings: number;
-        pending_bookings: number;
-        approved_bookings: number;
-        total_vehicles: number;
-        total_drivers: number;
-    };
-    bookingTrend: { month: string; count: number }[];
-    vehicleUsage: { name: string; count: number }[];
-    statusDistribution: { status: string; count: number }[];
+    stats: DashboardStats;
+    bookingTrend: ChartDataPoint[];
+    vehicleUsage: ChartDataPoint[];
+    statusDistribution: ChartDataPoint[];
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -186,12 +180,13 @@ export default function Dashboard({
                                                 cx="50%"
                                                 cy="50%"
                                                 labelLine={false}
-                                                label={({ status, percent }) =>
-                                                    `${status} (${(percent * 100).toFixed(0)}%)`
+                                                label={({ name, percent }) =>
+                                                    `${name ?? ''} (${((percent ?? 0) * 100).toFixed(0)}%)`
                                                 }
                                                 outerRadius={100}
                                                 fill="#8884d8"
                                                 dataKey="count"
+                                                nameKey="status"
                                             >
                                                 {statusDistribution.map((_, index) => (
                                                     <Cell

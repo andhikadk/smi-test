@@ -18,7 +18,7 @@ import {
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
-import { type BreadcrumbItem, type SharedData } from '@/types';
+import { type BookingDetail, type BreadcrumbItem, type SharedData } from '@/types';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import {
     ArrowLeft,
@@ -31,43 +31,6 @@ import {
     XCircle,
 } from 'lucide-react';
 import { useState } from 'react';
-
-interface Approval {
-    id: number;
-    approver: { name: string; email: string };
-    approval_level: number;
-    status: { value: string; label: string };
-    notes: string | null;
-    created_at: string;
-}
-
-interface BookingDetail {
-    id: number;
-    user: { id: number; name: string; email: string };
-    vehicle: {
-        id: number;
-        plate_number: string;
-        brand: string;
-        model: string;
-        type: string;
-    };
-    driver: {
-        id: number;
-        name: string;
-        license_number: string;
-        phone: string;
-    };
-    purpose: string;
-    start_datetime: string;
-    end_datetime: string;
-    status: { value: string; label: string };
-    current_approval_level: number;
-    created_at: string;
-    updated_at: string;
-    approvals: Approval[];
-    approver_1: { id: number; name: string };
-    approver_2: { id: number; name: string };
-}
 
 interface Props {
     booking: BookingDetail;

@@ -17,36 +17,22 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import {
+    type BreadcrumbItem,
+    type DriverSelectItem,
+    type UserSelectItem,
+    type VehicleSelectItem,
+} from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { ArrowLeft, Car, User, UserCheck } from 'lucide-react';
 
-interface UserItem {
-    id: number;
-    name: string;
-    email: string;
-}
-
-interface Vehicle {
-    id: number;
-    plate_number: string;
-    brand: string;
-    model: string;
-    type: string;
-}
-
-interface Driver {
-    id: number;
-    name: string;
-    license_number: string;
-}
-
 interface Props {
-    employees: UserItem[];
-    vehicles: Vehicle[];
-    drivers: Driver[];
-    approvers: UserItem[];
+    employees: UserSelectItem[];
+    vehicles: VehicleSelectItem[];
+    drivers: DriverSelectItem[];
+    approvers: UserSelectItem[];
 }
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
