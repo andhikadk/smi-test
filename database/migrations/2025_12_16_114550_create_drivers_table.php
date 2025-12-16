@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('license_number')->unique();
+            $table->string('phone');
+            $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->timestamps();
         });
     }

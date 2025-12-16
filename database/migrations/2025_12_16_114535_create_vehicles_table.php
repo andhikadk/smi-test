@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->string('plate_number')->unique();
+            $table->enum('type', ['personnel', 'cargo']);
+            $table->string('brand');
+            $table->string('model');
+            $table->enum('ownership', ['owned', 'rented']);
+            $table->enum('status', ['available', 'in_use', 'in_service'])->default('available');
             $table->timestamps();
         });
     }
