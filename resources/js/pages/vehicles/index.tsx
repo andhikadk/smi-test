@@ -19,7 +19,7 @@ import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type VehicleListItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/react';
-import { Car, Edit, Plus, Trash2 } from 'lucide-react';
+import { Truck, Edit, Plus, Trash2 } from 'lucide-react';
 
 interface Props {
     vehicles: VehicleListItem[];
@@ -70,7 +70,7 @@ export default function VehiclesIndex({ vehicles }: Props) {
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <Car className="h-5 w-5" />
+                            <Truck className="h-5 w-5" />
                             Kendaraan ({vehicles.length})
                         </CardTitle>
                         <CardDescription>

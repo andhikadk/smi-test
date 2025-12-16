@@ -24,7 +24,7 @@ import {
     type VehicleSelectItem,
 } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, Car, User, UserCheck } from 'lucide-react';
+import { ArrowLeft, Truck, User, UserCheck } from 'lucide-react';
 
 interface Props {
     employees: UserSelectItem[];
@@ -88,7 +88,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                     {/* Main Form */}
                     <div className="space-y-6 lg:col-span-2">
                         {/* Employee Selection */}
-                        <Card className="card-industrial">
+                        <Card>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <User className="h-5 w-5" />
@@ -127,10 +127,10 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Vehicle & Driver Selection */}
-                        <Card className="card-industrial">
+                        <Card>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
-                                    <Car className="h-5 w-5" />
+                                    <Truck className="h-5 w-5" />
                                     Kendaraan & Supir
                                 </CardTitle>
                                 <CardDescription>
@@ -191,7 +191,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Time Selection */}
-                        <Card className="card-industrial">
+                        <Card>
                             <CardHeader>
                                 <CardTitle>Waktu Pemesanan</CardTitle>
                                 <CardDescription>
@@ -231,7 +231,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                         </Card>
 
                         {/* Purpose */}
-                        <Card className="card-industrial">
+                        <Card>
                             <CardHeader>
                                 <CardTitle>Tujuan Pemesanan</CardTitle>
                                 <CardDescription>
@@ -259,7 +259,7 @@ export default function BookingsCreate({ employees, vehicles, drivers, approvers
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Approver Selection */}
-                        <Card className="card-industrial">
+                        <Card>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <UserCheck className="h-5 w-5" />

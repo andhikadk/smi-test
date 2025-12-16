@@ -20,7 +20,7 @@ import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
 import { type BookingFilters, type BookingListItem, type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/react';
-import { Calendar, Car, Clock, Plus, User } from 'lucide-react';
+import { Calendar, Truck, Clock, Plus, User } from 'lucide-react';
 import { useState } from 'react';
 
 interface Props {
@@ -228,7 +228,7 @@ export default function BookingsIndex({ bookings, filters, canCreate }: Props) {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <div className="flex items-center gap-2">
-                                                        <Car className="h-4 w-4 text-muted-foreground" />
+                                                        <Truck className="h-4 w-4 text-muted-foreground" />
                                                         <div>
                                                             <div className="font-medium">
                                                                 {booking.vehicle.plate_number}

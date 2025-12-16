@@ -5,10 +5,12 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem, type ChartDataPoint, type DashboardStats } from '@/types';
-import { Head } from '@inertiajs/react';
+import { type BreadcrumbItem, type ChartDataPoint, type DashboardStats, type TrendPeriod } from '@/types';
+import { Head, router } from '@inertiajs/react';
 import { CalendarCheck, Car, Clock, Truck, Users } from 'lucide-react';
+import { useState } from 'react';
 import {
     Bar,
     BarChart,
@@ -30,6 +32,7 @@ interface Props {
     bookingTrend: ChartDataPoint[];
     vehicleUsage: ChartDataPoint[];
     statusDistribution: ChartDataPoint[];
+    currentPeriod: TrendPeriod;
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -39,7 +42,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-// Industrial monochrome palette: Navy shades + Amber accent
 const COLORS = ['#f59e0b', '#123c61', '#4b5563', '#64748b'];
 const NAVY = '#123c61';
 const STEEL = '#4b5563';
@@ -49,7 +51,19 @@ export default function Dashboard({
     bookingTrend,
     vehicleUsage,
     statusDistribution,
+    currentPeriod,
 }: Props) {
+    const [period, setPeriod] = useState<TrendPeriod>(currentPeriod);
+
+    const handlePeriodChange = (value: string) => {
+        const newPeriod = value as TrendPeriod;
+        setPeriod(newPeriod);
+        router.get(
+            '/dashboard',
+            { period: newPeriod },
+            { preserveState: true, preserveScroll: true }
+        );
+    };
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -133,10 +147,33 @@ export default function Dashboard({
                     {/* Booking Trend */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Tren Pemesanan</CardTitle>
-                            <CardDescription>
-                                Jumlah pemesanan 6 bulan terakhir
-                            </CardDescription>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle>Tren Pemesanan</CardTitle>
+                                    <CardDescription>
+                                        {period === 'daily' && 'Jumlah pemesanan 30 hari terakhir'}
+                                        {period === 'weekly' && 'Jumlah pemesanan 8 minggu terakhir'}
+                                        {period === 'monthly' && 'Jumlah pemesanan 6 bulan terakhir'}
+                                    </CardDescription>
+                                </div>
+                                <ToggleGroup
+                                    type="single"
+                                    value={period}
+                                    onValueChange={handlePeriodChange}
+                                    variant="outline"
+                                    size="sm"
+                                >
+                                    <ToggleGroupItem value="daily" aria-label="Harian">
+                                        Harian
+                                    </ToggleGroupItem>
+                                    <ToggleGroupItem value="weekly" aria-label="Mingguan">
+                                        Mingguan
+                                    </ToggleGroupItem>
+                                    <ToggleGroupItem value="monthly" aria-label="Bulanan">
+                                        Bulanan
+                                    </ToggleGroupItem>
+                                </ToggleGroup>
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <div className="h-[300px]">
@@ -144,7 +181,13 @@ export default function Dashboard({
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart data={bookingTrend}>
                                             <CartesianGrid strokeDasharray="3 3" stroke={STEEL} opacity={0.3} />
-                                            <XAxis dataKey="month" stroke={STEEL} />
+                                            <XAxis
+                                                dataKey="label"
+                                                stroke={STEEL}
+                                                angle={period === 'daily' ? -45 : 0}
+                                                textAnchor={period === 'daily' ? 'end' : 'middle'}
+                                                height={period === 'daily' ? 60 : 30}
+                                            />
                                             <YAxis allowDecimals={false} stroke={STEEL} />
                                             <Tooltip />
                                             <Line
@@ -217,7 +260,7 @@ export default function Dashboard({
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <Car className="h-5 w-5" />
+                            <Truck className="h-5 w-5" />
                             Pemakaian Kendaraan
                         </CardTitle>
                         <CardDescription>

@@ -51,6 +51,7 @@ class EloquentBookingRepository implements BookingRepositoryInterface
         return Booking::with(['user', 'vehicle', 'driver'])
             ->where('status', BookingStatus::PENDING)
             ->where('current_approval_level', $approver->approval_level)
+            ->latest()
             ->get();
     }
 
@@ -68,6 +69,6 @@ class EloquentBookingRepository implements BookingRepositoryInterface
             $query->whereDate('end_datetime', '<=', $filters['date_to']);
         }
 
-        return $query->get();
+        return $query->latest()->get();
     }
 }

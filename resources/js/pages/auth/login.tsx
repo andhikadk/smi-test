@@ -7,7 +7,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head, Link } from '@inertiajs/react';
-import { Car, Lock, Mail } from 'lucide-react';
+import { Truck, Lock, Mail } from 'lucide-react';
 
 interface LoginProps {
     status?: string;
@@ -35,7 +35,7 @@ export default function Login({
                     <div className="relative z-10 flex flex-col justify-center px-12 lg:px-16">
                         <div className="flex items-center gap-3 mb-8">
                             <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
-                                <Car className="h-8 w-8 text-white" />
+                                <Truck className="h-8 w-8 text-white" />
                             </div>
                             <span className="text-2xl font-bold text-white">NikelKu</span>
                         </div>
@@ -74,7 +74,7 @@ export default function Login({
                         {/* Mobile Logo */}
                         <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
                             <div className="p-2.5 bg-primary rounded-xl">
-                                <Car className="h-6 w-6 text-white" />
+                                <Truck className="h-6 w-6 text-white" />
                             </div>
                             <span className="text-xl font-bold text-foreground">NikelKu</span>
                         </div>

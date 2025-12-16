@@ -132,7 +132,6 @@ class BookingController extends Controller
 
     public function show(Booking $booking): Response
     {
-        // Load relationships needed for the view
         $booking->load(['user', 'vehicle', 'driver', 'approvals.approver', 'approver1', 'approver2']);
 
         $user = request()->user();

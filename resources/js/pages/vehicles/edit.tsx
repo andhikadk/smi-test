@@ -19,7 +19,7 @@ import {
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, Car } from 'lucide-react';
+import { ArrowLeft, Truck } from 'lucide-react';
 
 interface Option {
     value: string;
@@ -88,7 +88,7 @@ export default function VehiclesEdit({ vehicle, types, ownerships, statuses }: P
                     <Card className="max-w-2xl">
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
-                                <Car className="h-5 w-5" />
+                                <Truck className="h-5 w-5" />
                                 Data Kendaraan
                             </CardTitle>
                             <CardDescription>

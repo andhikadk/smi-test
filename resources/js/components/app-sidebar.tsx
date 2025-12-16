@@ -12,7 +12,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { CalendarCheck, Car, FileSpreadsheet, LayoutGrid, Users } from 'lucide-react';
+import { CalendarCheck, Truck, FileSpreadsheet, LayoutGrid, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -29,7 +29,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Kendaraan',
         href: '/vehicles',
-        icon: Car,
+        icon: Truck,
     },
     {
         title: 'Sopir',

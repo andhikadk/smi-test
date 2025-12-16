@@ -23,7 +23,7 @@ import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import {
     ArrowLeft,
     Calendar,
-    Car,
+    Truck,
     CheckCircle,
     Clock,
     Phone,
@@ -115,7 +115,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                                 </Badge>
                             </div>
                             <p className="text-muted-foreground">
-                                Dibuat {formatDateTime(booking.created_at)}
+                                Dibuat {booking.created_at ? formatDateTime(booking.created_at) : '-'}
                             </p>
                         </div>
                     </div>
@@ -146,7 +146,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                     <Card className="card-industrial">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-2 text-base">
-                                <Car className="h-4 w-4 text-muted-foreground" />
+                                <Truck className="h-4 w-4 text-muted-foreground" />
                                 Kendaraan
                             </CardTitle>
                         </CardHeader>
@@ -303,7 +303,7 @@ export default function BookingsShow({ booking, canApprove }: Props) {
                                                     </p>
                                                 )}
                                                 <p className="text-xs text-muted-foreground">
-                                                    {formatDateTime(approval.created_at)}
+                                                    {approval.created_at ? formatDateTime(approval.created_at) : '-'}
                                                 </p>
                                             </div>
                                         </div>

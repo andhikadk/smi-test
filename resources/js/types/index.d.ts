@@ -61,12 +61,15 @@ export interface DashboardStats {
 }
 
 export interface ChartDataPoint {
+    label?: string;
     month?: string;
     name?: string;
     status?: string;
     count: number;
     [key: string]: string | number | undefined;
 }
+
+export type TrendPeriod = 'daily' | 'weekly' | 'monthly';
 
 // ===========================
 // Base Model Interfaces
