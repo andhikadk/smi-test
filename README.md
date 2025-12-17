@@ -57,8 +57,8 @@ Aplikasi ini dibangun untuk memenuhi kebutuhan perusahaan tambang nikel dalam me
 
 1. **Clone repository**
    ```bash
-   git clone <repository-url>
-   cd sekawan-media-test
+   git clone https://github.com/andhikadk/smi-test
+   cd smi-test
    ```
 
 2. **Install dependencies PHP**
