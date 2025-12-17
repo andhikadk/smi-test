@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\ActivityLog;
 use App\Repositories\Contracts\ActivityLogRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class EloquentActivityLogRepository implements ActivityLogRepositoryInterface
@@ -19,5 +20,12 @@ class EloquentActivityLogRepository implements ActivityLogRepositoryInterface
             ->latest()
             ->take($limit)
             ->get();
+    }
+
+    public function paginate(int $perPage = 15): LengthAwarePaginator
+    {
+        return ActivityLog::with('user:id,name')
+            ->latest()
+            ->paginate($perPage);
     }
 }

@@ -36,7 +36,7 @@ class ReportController extends Controller
         $bookings = $query->get()->map(fn ($booking) => [
             'id' => $booking->id,
             'user' => $booking->user->name,
-            'vehicle' => $booking->vehicle->plate_number . ' - ' . $booking->vehicle->brand . ' ' . $booking->vehicle->model,
+            'vehicle' => $booking->vehicle->plate_number.' - '.$booking->vehicle->brand.' '.$booking->vehicle->model,
             'driver' => $booking->driver->name,
             'purpose' => $booking->purpose,
             'start_datetime' => $booking->start_datetime->format('d/m/Y H:i'),
@@ -71,7 +71,7 @@ class ReportController extends Controller
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
 
-        $fileName = 'laporan-pemesanan-' . now()->format('Y-m-d-His') . '.xlsx';
+        $fileName = 'laporan-pemesanan-'.now()->format('Y-m-d-His').'.xlsx';
 
         return (new BookingsExport($status, $dateFrom, $dateTo))
             ->download($fileName);

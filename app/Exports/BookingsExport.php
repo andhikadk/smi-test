@@ -12,13 +12,16 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class BookingsExport implements FromQuery, WithHeadings, WithMapping, ShouldAutoSize, Responsable
+class BookingsExport implements FromQuery, Responsable, ShouldAutoSize, WithHeadings, WithMapping
 {
     use Exportable;
 
     private ?string $status;
+
     private ?string $dateFrom;
+
     private ?string $dateTo;
+
     private string $fileName = 'laporan-pemesanan.xlsx';
 
     public function __construct(?string $status = null, ?string $dateFrom = null, ?string $dateTo = null)
@@ -73,7 +76,7 @@ class BookingsExport implements FromQuery, WithHeadings, WithMapping, ShouldAuto
             $booking->id,
             $booking->user->name,
             $booking->user->email,
-            $booking->vehicle->brand . ' ' . $booking->vehicle->model,
+            $booking->vehicle->brand.' '.$booking->vehicle->model,
             $booking->vehicle->plate_number,
             $booking->driver->name,
             $booking->purpose,

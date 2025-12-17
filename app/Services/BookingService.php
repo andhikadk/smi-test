@@ -174,5 +174,4 @@ class BookingService
             throw new Exception('An unexpected error occurred while rejecting the booking.');
         }
     }
-
 }

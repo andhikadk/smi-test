@@ -103,4 +103,3 @@ class DriverController extends Controller
             ->with('success', 'Sopir berhasil dihapus.');
     }
 }
-

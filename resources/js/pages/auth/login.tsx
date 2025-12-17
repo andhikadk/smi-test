@@ -7,7 +7,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head, Link } from '@inertiajs/react';
-import { Truck, Lock, Mail } from 'lucide-react';
+import { Truck, Lock, Mail, Book, Github } from 'lucide-react';
 
 interface LoginProps {
     status?: string;
@@ -176,6 +176,42 @@ export default function Login({
                         <p className="mt-8 text-center text-xs text-muted-foreground">
                             © {new Date().getFullYear()} NikelKu. Sistem Pemesanan Kendaraan.
                         </p>
+
+                        {/* Technical Test Information */}
+                        <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="w-full sm:w-auto"
+                            >
+                                <a
+                                    href="https://github.com/andhikadk/smi-test"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2"
+                                >
+                                    <Github className="h-4 w-4" />
+                                    Repository
+                                </a>
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="w-full sm:w-auto"
+                            >
+                                <a
+                                    href="https://github.com/andhikadk/smi-test#readme"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2"
+                                >
+                                    <Book className="h-4 w-4" />
+                                    Dokumentasi
+                                </a>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

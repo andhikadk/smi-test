@@ -157,6 +157,36 @@ export interface ApprovalListItem extends Pick<Approval, 'id' | 'approval_level'
     status: LabelValue;
 }
 
+export interface ActivityLogListItem extends Pick<BaseModel, 'id' | 'created_at'> {
+    activity: string;
+    user: Pick<User, 'name'> | null;
+}
+
+// ===========================
+// Pagination Types
+// ===========================
+
+export interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
+export interface PaginationMeta {
+    current_page: number;
+    from: number | null;
+    last_page: number;
+    per_page: number;
+    to: number | null;
+    total: number;
+}
+
+export interface PaginatedData<T> {
+    data: T[];
+    links: PaginationLink[];
+    meta: PaginationMeta;
+}
+
 // ===========================
 // Detail Types (extended info)
 // ===========================
